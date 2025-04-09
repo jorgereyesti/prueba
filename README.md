@@ -84,10 +84,5 @@ pip install -r requirements.txt
 
 ---
 
-## 📬 Contribuciones
-¡Bienvenido a contribuir! Crea un issue o haz un pull request si querés mejorar algo.
-
----
-
 ## 🧾 Licencia
 Este proyecto está bajo la Licencia MIT.

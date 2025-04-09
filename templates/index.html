@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Listado de Personas</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+<div class="container mt-4">
+    <h2 class="mb-4">Personas en Situación de Calle</h2>
+    <a href="/agregar" class="btn btn-success mb-3">Agregar Nueva Persona</a>
+
+    <div class="table-responsive">
+        <table class="table table-striped table-bordered">
+            <thead class="table-dark">
+                <tr>
+                    <th>Nombre</th>
+                    <th>DNI</th>
+                    <th>Edad</th>
+                    <th>Género</th>
+                    <th>Tiempo en Calle</th>
+                    <th>Problemáticas</th>
+                    <th>Dirección</th>
+                    <th>Coordenadas</th>
+                    <th>Contacto de Emergencia</th>
+                    <th>Observaciones</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for persona in personas %}
+                <tr>
+                    <td>{{ persona.nombre }}</td>
+                    <td>{{ persona.dni }}</td>
+                    <td>{{ persona.edad }}</td>
+                    <td>{{ persona.genero_descripcion }}</td>
+                    <td>{{ persona.tiempo_calle_nombre }}</td>
+                    <td>{{ persona.problematicas }}</td>
+                    <td>{{ persona.direccion }}</td>
+                    <td>{{ persona.coordenadas }}</td>
+                    <td>{{ persona.contacto_emergencia }}</td>
+                    <td>{{ persona.observaciones }}</td>
+                    <td>
+                        <a href="{{ url_for('editar', id=persona.id) }}" class="btn btn-sm btn-primary">Editar</a>
+                        <a href="{{ url_for('eliminar', id=persona.id) }}" class="btn btn-sm btn-danger" onclick="return confirm('¿Estás seguro de eliminar este registro?');">Eliminar</a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+</body>
+</html>
+

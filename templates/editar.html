@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Editar Persona</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+<div class="container mt-4">
+    <h2>Editar Persona</h2>
+    <form method="POST">
+        <div class="row">
+            <div class="col-md-6">
+                <label class="form-label">Nombre</label>
+                <input type="text" name="nombre" class="form-control" value="{{ persona.nombre }}" required>
+            </div>
+            <div class="col-md-6">
+                <label class="form-label">DNI</label>
+                <input type="text" name="dni" class="form-control" value="{{ persona.dni }}" required>
+            </div>
+            <div class="col-md-3">
+                <label class="form-label">Edad</label>
+                <input type="number" name="edad" class="form-control" value="{{ persona.edad }}" required>
+            </div>
+            <div class="col-md-3">
+                <label class="form-label">Género</label>
+                <select name="genero_id" class="form-select">
+                    {% for genero in generos %}
+                        <option value="{{ genero.id }}" {% if genero.id == persona.genero_id %}selected{% endif %}>{{ genero.descripcion }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div class="col-md-3">
+                <label class="form-label">Tiempo en calle</label>
+                <select name="tiempo_calle_id" class="form-select">
+                    {% for tiempo in tiempo_calle %}
+                        <option value="{{ tiempo.id }}" {% if tiempo.id == persona.tiempo_calle_id %}selected{% endif %}>{{ tiempo.descripcion }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div class="col-md-3">
+                <label class="form-label">Estado Civil</label>
+                <select name="estado_civil_id" class="form-select">
+                    {% for estado in estado_civil %}
+                        <option value="{{ estado.id }}" {% if estado.id == persona.estado_civil_id %}selected{% endif %}>{{ estado.descripcion }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div class="col-md-3">
+                <label class="form-label">Nivel de Estudios</label>
+                <select name="nivel_estudios_id" class="form-select">
+                    {% for nivel in nivel_estudios %}
+                        <option value="{{ nivel.id }}" {% if nivel.id == persona.nivel_estudios_id %}selected{% endif %}>{{ nivel.descripcion }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div class="col-md-3">
+                <label class="form-label">Mantenimiento Económico</label>
+                <select name="mant_economico_id" class="form-select">
+                    {% for mant in mant_economico %}
+                        <option value="{{ mant.id }}" {% if mant.id == persona.mant_economico_id %}selected{% endif %}>{{ mant.descripcion }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div class="col-md-3">
+                <label class="form-label">Obra Social</label>
+                <select name="obra_social_id" class="form-select">
+                    {% for obra in obra_social %}
+                        <option value="{{ obra.id }}" {% if obra.id == persona.obra_social_id %}selected{% endif %}>{{ obra.descripcion }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div class="col-md-3">
+                <label class="form-label">Grupo Familiar</label>
+                <select name="grupo_familiar_id" class="form-select">
+                    {% for grupo in grupo_familiar %}
+                        <option value="{{ grupo.id }}" {% if grupo.id == persona.grupo_familiar_id %}selected{% endif %}>{{ grupo.descripcion }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div class="col-md-6">
+                <label class="form-label">Dirección</label>
+                <input type="text" name="direccion" class="form-control" value="{{ persona.direccion }}" required>
+            </div>
+            <div class="col-md-6">
+                <label class="form-label">Coordenadas</label>
+                <input type="text" name="coordenadas" class="form-control" value="{{ persona.coordenadas }}">
+            </div>
+            <div class="col-md-6">
+                <label class="form-label">Contacto de Emergencia</label>
+                <input type="text" name="contacto_emergencia" class="form-control" value="{{ persona.contacto_emergencia }}">
+            </div>
+            <div class="col-md-12">
+                <label class="form-label">Observaciones</label>
+                <textarea name="observaciones" class="form-control" rows="3">{{ persona.observaciones }}</textarea>
+            </div>
+            <div class="col-md-12 mt-3">
+                <label class="form-label">Problemáticas</label>
+                <div class="row">
+                    {% for prob in problematica %}
+                        <div class="col-md-4">
+                            <div class="form-check">
+                                <input 
+                                    class="form-check-input" 
+                                    type="checkbox" 
+                                    name="problematica_ids" 
+                                    value="{{ prob.id }}" 
+                                    id="prob{{ prob.id }}"
+                                    {% if prob.id in persona.problematica_ids %}checked{% endif %}
+                                >
+                                <label class="form-check-label" for="prob{{ prob.id }}">
+                                    {{ prob.descripcion }}
+                                </label>
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+            
+        </div>
+        <div class="mt-4">
+            <button type="submit" class="btn btn-primary">Guardar Cambios</button>
+            <a href="{{ url_for('index') }}" class="btn btn-secondary">Cancelar</a>
+        </div>
+    </form>
+</div>
+</body>
+</html>

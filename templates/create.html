@@ -1,0 +1,9 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>Nuevo Registro</h2>
+<form method="POST">
+    {% include 'form_fields.html' %}
+    <button type="submit" class="btn btn-success">Guardar</button>
+    <a href="{{ url_for('index') }}" class="btn btn-secondary">Cancelar</a>
+</form>
+{% endblock %}

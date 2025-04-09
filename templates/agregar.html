@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Agregar Persona</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+<div class="container mt-4">
+    <h2 class="mb-4">Registro de Persona en Situación de Calle</h2>
+    <form method="POST">
+        <div class="row mb-3">
+            <div class="col-md-6">
+                <label for="nombre" class="form-label">Nombre</label>
+                <input type="text" class="form-control" id="nombre" name="nombre" required>
+            </div>
+            <div class="col-md-6">
+                <label for="dni" class="form-label">DNI</label>
+                <input type="text" class="form-control" id="dni" name="dni" required>
+            </div>
+        </div>
+
+        <div class="row mb-3">
+            <div class="col-md-4">
+                <label for="edad" class="form-label">Edad</label>
+                <input type="number" class="form-control" id="edad" name="edad" required>
+            </div>
+            <div class="col-md-4">
+                <label for="genero_id" class="form-label">Género</label>
+                <select class="form-select" name="genero_id" required>
+                    {% for genero in generos %}
+                        <option value="{{ genero.id }}">{{ genero.descripcion }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div class="col-md-4">
+                <label for="tiempo_calle_id" class="form-label">Tiempo en Calle</label>
+                <select class="form-select" name="tiempo_calle_id">
+                    {% for tiempo in tiempo_calle %}
+                        <option value="{{ tiempo.id }}">{{ tiempo.descripcion }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+        </div>
+
+        <div class="row mb-3">
+            <div class="col-md-4">
+                <label for="estado_civil_id" class="form-label">Estado Civil</label>
+                <select class="form-select" name="estado_civil_id">
+                    {% for estado in estado_civil %}
+                        <option value="{{ estado.id }}">{{ estado.descripcion }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div class="col-md-4">
+                <label for="nivel_estudios_id" class="form-label">Nivel de Estudios</label>
+                <select class="form-select" name="nivel_estudios_id">
+                    {% for nivel in nivel_estudios %}
+                        <option value="{{ nivel.id }}">{{ nivel.descripcion }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div class="col-md-4">
+                <label for="mant_economico_id" class="form-label">Mantenimiento Económico</label>
+                <select class="form-select" name="mant_economico_id">
+                    {% for mant in mant_economico %}
+                        <option value="{{ mant.id }}">{{ mant.descripcion }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+        </div>
+
+        <div class="row mb-3">
+            <div class="col-md-4">
+                <label for="obra_social_id" class="form-label">Obra Social</label>
+                <select class="form-select" name="obra_social_id">
+                    {% for obra in obra_social %}
+                        <option value="{{ obra.id }}">{{ obra.descripcion }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div class="col-md-4">
+                <label for="grupo_familiar_id" class="form-label">Grupo Familiar</label>
+                <select class="form-select" name="grupo_familiar_id">
+                    {% for grupo in grupo_familiar %}
+                        <option value="{{ grupo.id }}">{{ grupo.descripcion }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div class="col-md-4">
+                <label for="contacto_emergencia" class="form-label">Contacto de Emergencia</label>
+                <input type="text" class="form-control" id="contacto_emergencia" name="contacto_emergencia">
+            </div>
+        </div>
+
+        <div class="mb-3">
+            <label for="problematica_ids" class="form-label">Problemáticas</label>
+            <div class="form-check">
+                {% for p in problematica %}
+                <input class="form-check-input" type="checkbox" name="problematica_ids" value="{{ p.id }}" id="problematica_{{ p.id }}">
+                <label class="form-check-label me-3" for="problematica_{{ p.id }}">{{ p.descripcion }}</label><br>
+                {% endfor %}
+            </div>
+        </div>
+
+        <div class="row mb-3">
+            <div class="col-md-6">
+                <label for="direccion" class="form-label">Dirección</label>
+                <input type="text" class="form-control" id="direccion" name="direccion" required>
+            </div>
+            <div class="col-md-6">
+                <label for="coordenadas" class="form-label">Coordenadas</label>
+                <input type="text" class="form-control" id="coordenadas" name="coordenadas" required>
+            </div>
+        </div>
+
+        <div class="mb-3">
+            <label for="observaciones" class="form-label">Observaciones</label>
+            <textarea class="form-control" id="observaciones" name="observaciones" rows="3"></textarea>
+        </div>
+
+        <button type="submit" class="btn btn-primary">Guardar</button>
+        <a href="/" class="btn btn-secondary">Cancelar</a>
+    </form>
+</div>
+</body>
+</html>
